@@ -3,7 +3,7 @@
 # Usage: ./deploy.sh [GCP_PROJECT_ID]   (default: anchor-electronics-mcp)
 set -euo pipefail
 
-PROJECT="${1:-anchor-electronics-mcp}"
+PROJECT="${1:-anchor-electronics-mcp-495419}"
 REGION="us-west1"
 SERVICE="anchor-mcp"
 IMAGE="us-west1-docker.pkg.dev/${PROJECT}/anchor-mcp/server"
@@ -46,5 +46,4 @@ echo "==> Deployed! MCP endpoint:"
 gcloud run services describe "$SERVICE" \
   --project="$PROJECT" \
   --region="$REGION" \
-  --format="value(status.url)" \
-  | sed 's|$|/mcp|'
+  --format="value(status.url)"

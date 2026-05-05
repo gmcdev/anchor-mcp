@@ -23,9 +23,9 @@ The price list is current as of **January 2026**.
 
 ### Claude.ai (Pro / Max)
 
-1. Go to **claude.ai** → profile → **Settings** → **Integrations**
-2. Click **Add Integration**
-3. Enter the URL: `https://anchor-mcp-5atekw3vma-uw.a.run.app/mcp`
+1. Go to **claude.ai** → profile → **Settings** → **Integrations** (may appear as **Custom Connectors**)
+2. Click **Add** / **Add custom connector**
+3. Enter the URL: `https://anchor-mcp-250082930574.us-west1.run.app`
 4. Name it **Anchor Electronics**
 
 ### Claude Code (CLI)
@@ -37,7 +37,7 @@ Add to `~/.claude.json`:
   "mcpServers": {
     "anchor-electronics": {
       "type": "http",
-      "url": "https://anchor-mcp-5atekw3vma-uw.a.run.app/mcp"
+      "url": "https://anchor-mcp-250082930574.us-west1.run.app"
     }
   }
 }
@@ -52,7 +52,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "anchor-electronics": {
       "type": "http",
-      "url": "https://anchor-mcp-5atekw3vma-uw.a.run.app/mcp"
+      "url": "https://anchor-mcp-250082930574.us-west1.run.app"
     }
   }
 }
@@ -88,7 +88,7 @@ This regenerates `data/price_list.json`.
 
 ```bash
 python server.py
-# MCP endpoint: http://localhost:8080/mcp
+# MCP endpoint: http://localhost:8080
 ```
 
 ### Deploy to Cloud Run
@@ -96,7 +96,7 @@ python server.py
 ```bash
 # First time: enable APIs and link billing
 gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com \
-  --project=anchor-electronics-mcp
+  --project=anchor-electronics-mcp-495419
 
 # Deploy
 ./deploy.sh

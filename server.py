@@ -5,6 +5,7 @@ import json
 import os
 
 from mcp.server.fastmcp import FastMCP
+from starlette.middleware.cors import CORSMiddleware
 
 _DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "price_list.json")
 with open(_DATA_PATH) as _f:
@@ -21,6 +22,7 @@ mcp = FastMCP(
     ),
     host="0.0.0.0",
     port=_port,
+    streamable_http_path="/",
 )
 
 
@@ -111,5 +113,17 @@ def get_category_content(keyword: str) -> str:
     return "\n\n".join(parts)
 
 
+def create_app():
+    app = mcp.streamable_http_app()
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["https://claude.ai"],
+        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_headers=["*"],
+    )
+    return app
+
+
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    import uvicorn
+    uvicorn.run(create_app(), host="0.0.0.0", port=_port)
