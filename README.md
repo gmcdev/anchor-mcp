@@ -4,7 +4,7 @@ An MCP server exposing the [Anchor Electronics](https://www.anchor-electronics.c
 
 Anchor Electronics is a walk-in electronics component store at 2040 Walsh Ave., Santa Clara, CA 95050. They stock a deep inventory of SMT and through-hole components: resistors, capacitors, diodes, transistors, ICs, connectors, inductors, LEDs, crystals, sockets, potentiometers, soldering supplies, and much more. Hours: Monday–Friday, 7:30 AM–4:00 PM.
 
-The price list is current as of **January 2026**.
+The server fetches the latest price list directly from Anchor's site on startup and every 12 hours thereafter, falling back to the bundled copy (`anchor_price_list.pdf`) if a fetch ever fails. Call `get_store_info()` for the currently-loaded edition.
 
 ---
 

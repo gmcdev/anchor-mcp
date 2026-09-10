@@ -7,6 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY data/ data/
 COPY server.py .
+COPY parser.py .
 
 ENV PORT=8080
 EXPOSE 8080
